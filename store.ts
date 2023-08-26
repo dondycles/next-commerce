@@ -36,7 +36,7 @@ export const useCartStore = create<CartState>()(
               if (cartItem.id === item.id) {
                 return {
                   ...cartItem,
-                  quantity: (cartItem.quantity as number) + 1,
+                  quantity: cartItem.quantity! + 1,
                 };
               }
               return cartItem;
