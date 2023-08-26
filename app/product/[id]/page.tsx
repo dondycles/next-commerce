@@ -16,6 +16,7 @@ export default async function ProductItem({ searchParams }: SearchParamsTypes) {
       ></Image>
       <div className="flex flex-col gap-2">
         <p className=" text-xl font-black">{searchParams.name}</p>
+        <p className=" text-xl font-black">{searchParams.id}</p>
         <p>{searchParams.description}</p>
         <p className=" text-primary font-bold">
           {searchParams.unit_amount &&
