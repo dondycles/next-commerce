@@ -50,6 +50,7 @@ export default async function Dashboard() {
                       width={100}
                       height={100}
                       alt={product.name}
+                      priority={true}
                       className="max-w-[100px] w-full aspect-square object-cover rounded"
                     ></Image>
                     <div className="flex flex-col">
