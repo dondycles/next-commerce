@@ -27,7 +27,7 @@ export default function AddCart({
       className="btn btn-primary max-w-[300px] w-screen"
     >
       {!added ? "Add to card" : "Adding to cart..."}
-      {id}
+      id: {id}
     </button>
   );
 }
