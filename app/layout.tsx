@@ -18,9 +18,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(options);
-  console.log(session);
   return (
-    <html lang="en" className={myFont.className}>
+    <html lang="en" className={myFont.className} data-theme="light">
       <body>
         <Hydrate>
           <Nav user={session?.user} expires={session?.expires as string} />

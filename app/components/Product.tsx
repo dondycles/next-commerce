@@ -19,17 +19,20 @@ export default function Product({
         query: { name, image, unit_amount, id, description, features },
       }}
     >
-      <div className="bg-black max-w-[300px] text-white">
+      <div className="rounded-lg overflow-hidden max-w-[300px]  border-[1px] border-black/25">
         <Image
           className="w-[300px] h-[300px] object-cover"
           src={image as string}
           width={400}
           height={400}
           alt={name as string}
+          priority={true}
         />
         <div className="p-4 flex flex-col gap-2">
           <p className=" text-xl font-black">{name}</p>
-          <p>{unit_amount && formatPrice(unit_amount as number)}</p>
+          <p className="font-black text-primary">
+            {unit_amount && formatPrice(unit_amount as number)}
+          </p>
         </div>
       </div>
     </Link>

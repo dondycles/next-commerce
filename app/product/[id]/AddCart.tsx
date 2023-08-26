@@ -13,15 +13,20 @@ export default function AddCart({
 }: AddCartType) {
   const cartStore = useCartStore();
   const [added, setAdded] = useState(false);
-
+  const handleAddToCard = () => {
+    cartStore.addProduct({ id, image, name, unit_amount, quantity });
+    setAdded(true);
+    setTimeout(() => {
+      setAdded(false);
+    }, 500);
+  };
   return (
     <button
-      onClick={() =>
-        cartStore.addProduct({ id, image, name, unit_amount, quantity })
-      }
-      className="bg-black p-4 text-white rounded-lg"
+      onClick={handleAddToCard}
+      disabled={added}
+      className="btn btn-primary max-w-[300px] w-screen"
     >
-      Add To Cart
+      {!added ? "Add to card" : "Adding to cart..."}
     </button>
   );
 }

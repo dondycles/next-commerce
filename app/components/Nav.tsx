@@ -1,16 +1,16 @@
 "use client";
 import { Session } from "next-auth";
-import { signIn } from "next-auth/react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useCartStore } from "@/store";
 import { AiFillShopping } from "react-icons/ai";
+import { signIn, signOut } from "next-auth/react";
 import Cart from "./Cart";
 export default function Nav({ user }: Session) {
   const cartStore = useCartStore();
-
   return (
-    <nav className="fixed top-0 left-0 w-full p-4 bg-black text-white flex justify-between items-center max-h-[80px] h-full">
+    <nav className="fixed top-0 left-0 w-full p-4 text-primary backdrop-blur  flex justify-between items-center max-h-[80px] h-full">
       <Link href={"/"}>
         <p className="font-black">Dondy-Commerce</p>
       </Link>
@@ -20,29 +20,69 @@ export default function Nav({ user }: Session) {
           className=" text-3xl flex relative cursor-pointer"
         >
           <AiFillShopping />
-          <span className=" text-red-400 absolute text-sm font-black -right-2 -top-2 bg-black rounded-full aspect-square w-4 text-center">
-            {cartStore.cart.length}
-          </span>
+          {cartStore.cart.length > 0 && (
+            <AnimatePresence>
+              <motion.span
+                animate={{ scale: 1 }}
+                initial={{ scale: 0 }}
+                key={cartStore.cart.length}
+                className=" text-secondary absolute text-xs font-black -right-2 -top-2 rounded-full aspect-square w-4 text-center"
+              >
+                {cartStore.cart.length}
+              </motion.span>
+            </AnimatePresence>
+          )}
         </li>
         {!user ? (
-          <li>
-            <Link href={"/api/auth/signin"}>Sign In</Link>
+          <li className="btn btn-primary" onClick={() => signIn()}>
+            Sign In
           </li>
         ) : (
           <li className="flex items-center justify-center">
-            <Link href={"/api/auth/signout"}>
+            <div className="  dropdown dropdown-end cursor-pointer">
               <Image
+                tabIndex={0}
                 className="rounded-full"
                 src={user?.image as string}
                 width={36}
                 height={36}
                 alt={user.name as string}
               />
-            </Link>
+              <ul
+                tabIndex={0}
+                className=" dropdown-content menu p-4 space-y-2 shadow bg-base-100 rounded-box "
+              >
+                <Link tabIndex={0} href={"/dashboard"}>
+                  <li
+                    onClick={() => {
+                      if (document.activeElement instanceof HTMLElement) {
+                        document.activeElement.blur();
+                      }
+                    }}
+                    className="  p-4 w-[100px] hover:bg-base-300 rounded-md"
+                  >
+                    {" "}
+                    Orders
+                  </li>
+                </Link>
+                <li
+                  tabIndex={0}
+                  onClick={() => {
+                    signOut();
+                    if (document.activeElement instanceof HTMLElement) {
+                      document.activeElement.blur();
+                    }
+                  }}
+                  className="  p-4 w-[100px] hover:bg-base-300 rounded-md"
+                >
+                  Sign Out
+                </li>
+              </ul>
+            </div>
           </li>
         )}
       </ul>
-      {cartStore.isOpen && <Cart />}
+      <AnimatePresence>{cartStore.isOpen && <Cart />}</AnimatePresence>
     </nav>
   );
 }
