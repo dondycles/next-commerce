@@ -7,6 +7,7 @@ type CartState = {
   cart: AddCartType[];
   toggleCart: () => void;
   clearCart: () => void;
+
   addProduct: (item: AddCartType) => void;
   removeProduct: (item: AddCartType) => void;
   paymentIntent: string;
