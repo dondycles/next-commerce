@@ -9,7 +9,7 @@ export default function AddCart() {
   const params = useSearchParams();
   const id = String(params?.get("id"));
   const name = String(params?.get("name"));
-  const unit_amount = Number(params?.get(" unit_amount"));
+  const unit_amount = Number(params?.get("unit_amount"));
   const image = String(params?.get("image"));
   const quantity = Number(params?.get("quantity"));
   const cartStore = useCartStore();
