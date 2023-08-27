@@ -22,7 +22,7 @@ export default async function ProductItem({ searchParams }: SearchParamsTypes) {
           {searchParams.unit_amount &&
             formatPrice(searchParams.unit_amount as number)}
         </p>
-        <AddCart {...searchParams} id={searchParams.id} />
+        <AddCart {...searchParams} />
       </div>
     </div>
   );
