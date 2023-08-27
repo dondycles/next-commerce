@@ -1,11 +1,10 @@
 import Nav from "./components/Nav";
 import "./globals.css";
 import localFont from "next/font/local";
-
 import { getServerSession } from "next-auth/next";
 import { options } from "@/pages/api/auth/[...nextauth]";
 import Hydrate from "./components/Hydrate";
-const myFont = localFont({ src: "../public/Oxygen-Regular.ttf" });
+const myFont = localFont({ src: "../public/Poppins-Regular.ttf" });
 
 export const metadata = {
   title: "Next-Commerce",
@@ -19,13 +18,11 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession(options);
   return (
-    <html lang="en" className={myFont.className} data-theme="light">
-      <body>
-        <Hydrate>
-          <Nav user={session?.user} expires={session?.expires as string} />
-          {children}
-        </Hydrate>
-      </body>
+    <html lang="en" className={myFont.className}>
+      <Hydrate>
+        <Nav user={session?.user} expires={session?.expires as string} />
+        {children}
+      </Hydrate>
     </html>
   );
 }

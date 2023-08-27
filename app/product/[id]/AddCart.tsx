@@ -25,7 +25,7 @@ export default function AddCart() {
     <button
       onClick={handleAddToCard}
       disabled={added}
-      className="btn btn-primary max-w-[300px] w-screen"
+      className="btn btn-primary max-w-[300px] w-full"
     >
       {!added ? "Add to card" : "Adding to cart..."}
     </button>

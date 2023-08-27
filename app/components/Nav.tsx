@@ -7,6 +7,7 @@ import { useCartStore } from "@/store";
 import { AiFillShopping } from "react-icons/ai";
 import { signIn, signOut } from "next-auth/react";
 import Cart from "./Cart";
+import DarkLight from "./DarkLight";
 export default function Nav({ user }: Session) {
   const cartStore = useCartStore();
   return (
@@ -32,6 +33,9 @@ export default function Nav({ user }: Session) {
               </motion.span>
             </AnimatePresence>
           )}
+        </li>
+        <li>
+          <DarkLight />
         </li>
         {!user ? (
           <li className="btn btn-primary" onClick={() => signIn()}>
