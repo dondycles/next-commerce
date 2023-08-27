@@ -3,14 +3,15 @@
 import { useCartStore } from "@/store";
 import { AddCartType } from "@/types/AddCartTypes";
 import { useState } from "react";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 
-export default function AddCart({
-  name,
-  id,
-  unit_amount,
-  image,
-  quantity,
-}: AddCartType) {
+export default function AddCart() {
+  const params = useSearchParams();
+  const id = String(params?.get("id"));
+  const name = String(params?.get("name"));
+  const unit_amount = Number(params?.get(" unit_amount"));
+  const image = String(params?.get("image"));
+  const quantity = Number(params?.get("quantity"));
   const cartStore = useCartStore();
   const [added, setAdded] = useState(false);
   const handleAddToCard = () => {
@@ -27,7 +28,6 @@ export default function AddCart({
       className="btn btn-primary max-w-[300px] w-screen"
     >
       {!added ? "Add to card" : "Adding to cart..."}
-      id: {id}
     </button>
   );
 }
