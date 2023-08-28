@@ -14,7 +14,7 @@ export default function Product({
   const { features } = metadata;
 
   return (
-    <div className="rounded-lg overflow-hidden w-full md:max-w-[300px] border-[1px] border-base-content/25 h-fit">
+    <div className="rounded-lg overflow-hidden w-full md:max-w-[300px] bg-base-200 h-fit">
       <Link
         href={{
           pathname: `/product/${id}`,

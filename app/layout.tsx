@@ -5,6 +5,9 @@ import { getServerSession } from "next-auth/next";
 import { options } from "@/pages/api/auth/[...nextauth]";
 import Hydrate from "./components/Hydrate";
 const myFont = localFont({ src: "../public/Poppins-Regular.ttf" });
+export const accentFont = localFont({
+  src: "../public/OleoScript-Regular.ttf",
+});
 
 export const metadata = {
   title: "Next-Commerce",

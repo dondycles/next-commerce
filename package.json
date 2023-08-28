@@ -26,6 +26,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
     "stripe": "^13.3.0",
+    "tailwind-scrollbar": "^3.0.5",
     "ts-node": "^10.9.1",
     "typescript": "5.2.2",
     "zustand": "^4.4.1"

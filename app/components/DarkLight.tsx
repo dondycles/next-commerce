@@ -7,26 +7,37 @@ export default function DarkLight() {
   const themeStore = useThemeStore();
 
   return (
-    <AnimatePresence>
-      <motion.div
-        key={themeStore.mode}
-        initial={{ rotate: "30deg", scale: 0.5 }}
-        animate={{ rotate: "0deg", scale: 1 }}
-        onClick={() => {
-          if (themeStore.mode === "light") {
-            themeStore.toggleMode("dark");
-          } else {
-            themeStore.toggleMode("light");
-          }
-        }}
-        className=" text-3xl cursor-pointer"
-      >
+    <div
+      onClick={() => {
+        if (themeStore.mode === "light") {
+          themeStore.toggleMode("dark");
+        } else {
+          themeStore.toggleMode("light");
+        }
+      }}
+      className=" text-3xl cursor-pointer h-[30px] w-[30px] relative"
+    >
+      <AnimatePresence>
         {themeStore.mode === "light" ? (
-          <MdOutlineDarkMode />
+          <motion.span
+            key={themeStore.mode}
+            initial={{ rotate: "90deg", scale: 0.5, opacity: 0 }}
+            animate={{ rotate: "0deg", scale: 1, opacity: 1 }}
+            className="absolute"
+          >
+            <MdOutlineDarkMode />
+          </motion.span>
         ) : (
-          <MdOutlineLightMode />
+          <motion.span
+            key={themeStore.mode}
+            initial={{ rotate: "90deg", scale: 0.5, opacity: 0 }}
+            animate={{ rotate: "0deg", scale: 1, opacity: 1 }}
+            className="absolute"
+          >
+            <MdOutlineLightMode />
+          </motion.span>
         )}
-      </motion.div>
-    </AnimatePresence>
+      </AnimatePresence>
+    </div>
   );
 }

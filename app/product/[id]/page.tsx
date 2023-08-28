@@ -6,7 +6,7 @@ import Image from "next/image";
 export default async function ProductItem({ searchParams }: SearchParamsTypes) {
   return (
     <div className=" pt-[96px] p-4 min-h-[100dvh] w-full">
-      <div className="flex flex-row flex-wrap gap-4 justify-center items-end">
+      <div className="flex flex-row flex-wrap gap-4 justify-center items-end bg-base-200 rounded-md p-4">
         <Image
           className="max-h-[500px] h-full max-w-[500px] w-full  aspect-square object-cover rounded-lg mb-0"
           src={searchParams.image}

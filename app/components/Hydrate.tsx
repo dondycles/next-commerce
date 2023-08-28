@@ -10,22 +10,22 @@ export default function Hydrate({ children }: { children: ReactNode }) {
     setIsHydrated(true);
   }, []);
   return (
-    <body>
+    <>
       {isHydrated ? (
-        <main
+        <body
           data-theme={themeStore.mode}
-          className=" duration-300 py-4 px-4 md:px-16"
+          className=" duration-300 py-4 px-4 md:px-16 scrollbar-thin scrollbar-thumb-base-content scrollbar-track-base-100"
         >
           {children}
-        </main>
+        </body>
       ) : (
-        <div
+        <body
           data-theme={themeStore.mode}
           className=" min-h-[100dvh] w-full font-black text-2xl flex items-center justify-center"
         >
           Loading...
-        </div>
+        </body>
       )}
-    </body>
+    </>
   );
 }

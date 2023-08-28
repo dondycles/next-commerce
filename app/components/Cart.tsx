@@ -43,14 +43,14 @@ export default function () {
             className="text-3xl cursor-pointer ml-auto mr-0 text-primary"
           />
         </div>
-        <div className=" overflow-y-scroll self-stretch -mr-4">
+        <div className=" overflow-y-scroll self-stretch scrollbar-thin scrollbar-thumb-base-content  -mr-4 pr-4">
           {cartStore.onCheckout === "cart" && (
             <>
               {cartStore.cart.map((item) => (
                 <motion.div
                   layout={true}
                   key={item.id}
-                  className="flex flex-row flex-wrap gap-4 border-b-black/25 border-b-[1px] pb-4 last:border-none mb-4 pr-4"
+                  className="flex flex-row flex-wrap gap-4 bg-base-200 p-4 last:border-none mb-4 pr-4 rounded-md"
                 >
                   <Image
                     className="aspect-square object-cover rounded-lg"

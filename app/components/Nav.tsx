@@ -8,12 +8,22 @@ import { AiFillShopping } from "react-icons/ai";
 import { signIn, signOut } from "next-auth/react";
 import Cart from "./Cart";
 import DarkLight from "./DarkLight";
+import { useState } from "react";
+import { accentFont } from "../layout";
 export default function Nav({ user }: Session) {
   const cartStore = useCartStore();
+  const [openDropDrown, setOpenDropDown] = useState<Boolean>(false);
   return (
-    <nav className="fixed top-0 left-0 w-full py-4 px-4 md:px-16 text-primary backdrop-blur  flex justify-between items-center max-h-[80px] h-full">
+    <nav
+      onBlur={() => setOpenDropDown(false)}
+      className="fixed top-0 left-0 w-full py-4 px-4 md:px-16 text-primary flex justify-between items-center max-h-[80px] h-full bg-base-100 duration-300 "
+    >
       <Link href={"/"}>
-        <p className="font-black">Dondy-Commerce</p>
+        <p
+          className={`font-black text-3xl text-base-content ${accentFont.className}`}
+        >
+          Sveltered
+        </p>
       </Link>
       <ul className="flex flex-row items-center gap-4">
         <li
@@ -42,9 +52,10 @@ export default function Nav({ user }: Session) {
             Sign In
           </li>
         ) : (
-          <li className="flex items-center justify-center">
-            <div className="  dropdown dropdown-end cursor-pointer">
+          <li className="flex items-center justify-center  relative">
+            <div className="cursor-pointer">
               <Image
+                onClick={() => setOpenDropDown((prev) => !prev)}
                 tabIndex={0}
                 className="rounded-full"
                 src={user?.image as string}
@@ -53,38 +64,41 @@ export default function Nav({ user }: Session) {
                 alt={user.name as string}
               />
               <AnimatePresence>
-                <motion.ul
-                  animate={{ opacity: 100 }}
-                  initial={{ opacity: 0 }}
-                  tabIndex={0}
-                  className=" dropdown-content menu p-4 space-y-2 shadow bg-base-100 rounded-box "
-                >
-                  <Link tabIndex={0} href={"/dashboard"}>
+                {openDropDrown && (
+                  <motion.ul
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 100 }}
+                    exit={{ opacity: 0 }}
+                    tabIndex={0}
+                    className=" p-4 space-y-2 shadow bg-base-100 rounded-box absolute top-12 right-0"
+                  >
+                    <Link tabIndex={0} href={"/dashboard"}>
+                      <li
+                        onClick={() => {
+                          if (document.activeElement instanceof HTMLElement) {
+                            document.activeElement.blur();
+                          }
+                        }}
+                        className="  p-4 w-[100px] hover:bg-base-300 rounded-md"
+                      >
+                        {" "}
+                        Orders
+                      </li>
+                    </Link>
                     <li
+                      tabIndex={0}
                       onClick={() => {
+                        signOut();
                         if (document.activeElement instanceof HTMLElement) {
                           document.activeElement.blur();
                         }
                       }}
                       className="  p-4 w-[100px] hover:bg-base-300 rounded-md"
                     >
-                      {" "}
-                      Orders
+                      Sign Out
                     </li>
-                  </Link>
-                  <li
-                    tabIndex={0}
-                    onClick={() => {
-                      signOut();
-                      if (document.activeElement instanceof HTMLElement) {
-                        document.activeElement.blur();
-                      }
-                    }}
-                    className="  p-4 w-[100px] hover:bg-base-300 rounded-md"
-                  >
-                    Sign Out
-                  </li>
-                </motion.ul>
+                  </motion.ul>
+                )}
               </AnimatePresence>
             </div>
           </li>
