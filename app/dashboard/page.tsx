@@ -31,12 +31,12 @@ export default async function Dashboard() {
     return <div>No Orders Placed!</div>;
   }
   return (
-    <main className=" flex flex-col gap-4 pt-[96px] p-4 text-black">
+    <main className=" flex flex-col gap-4 pt-[96px] text-base-content min-h-[100dvh]">
       {orders?.map((order) => {
         return (
           <div
             key={order.id}
-            className="flex flex-col gap-4 rounded-lg border-[1px] border-black/25 p-4"
+            className="flex flex-col gap-4 rounded-lg border-[1px] border-base-content/25 p-4"
           >
             <div className=" flex flex-col gap-4">
               {order.products.map((product) => {

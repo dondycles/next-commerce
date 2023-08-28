@@ -11,7 +11,7 @@ import DarkLight from "./DarkLight";
 export default function Nav({ user }: Session) {
   const cartStore = useCartStore();
   return (
-    <nav className="fixed top-0 left-0 w-full p-4 text-primary backdrop-blur  flex justify-between items-center max-h-[80px] h-full">
+    <nav className="fixed top-0 left-0 w-full py-4 px-4 md:px-16 text-primary backdrop-blur  flex justify-between items-center max-h-[80px] h-full">
       <Link href={"/"}>
         <p className="font-black">Dondy-Commerce</p>
       </Link>
@@ -52,36 +52,40 @@ export default function Nav({ user }: Session) {
                 height={36}
                 alt={user.name as string}
               />
-              <ul
-                tabIndex={0}
-                className=" dropdown-content menu p-4 space-y-2 shadow bg-base-100 rounded-box "
-              >
-                <Link tabIndex={0} href={"/dashboard"}>
+              <AnimatePresence>
+                <motion.ul
+                  animate={{ opacity: 100 }}
+                  initial={{ opacity: 0 }}
+                  tabIndex={0}
+                  className=" dropdown-content menu p-4 space-y-2 shadow bg-base-100 rounded-box "
+                >
+                  <Link tabIndex={0} href={"/dashboard"}>
+                    <li
+                      onClick={() => {
+                        if (document.activeElement instanceof HTMLElement) {
+                          document.activeElement.blur();
+                        }
+                      }}
+                      className="  p-4 w-[100px] hover:bg-base-300 rounded-md"
+                    >
+                      {" "}
+                      Orders
+                    </li>
+                  </Link>
                   <li
+                    tabIndex={0}
                     onClick={() => {
+                      signOut();
                       if (document.activeElement instanceof HTMLElement) {
                         document.activeElement.blur();
                       }
                     }}
                     className="  p-4 w-[100px] hover:bg-base-300 rounded-md"
                   >
-                    {" "}
-                    Orders
+                    Sign Out
                   </li>
-                </Link>
-                <li
-                  tabIndex={0}
-                  onClick={() => {
-                    signOut();
-                    if (document.activeElement instanceof HTMLElement) {
-                      document.activeElement.blur();
-                    }
-                  }}
-                  className="  p-4 w-[100px] hover:bg-base-300 rounded-md"
-                >
-                  Sign Out
-                </li>
-              </ul>
+                </motion.ul>
+              </AnimatePresence>
             </div>
           </li>
         )}

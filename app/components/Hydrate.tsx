@@ -12,7 +12,10 @@ export default function Hydrate({ children }: { children: ReactNode }) {
   return (
     <body>
       {isHydrated ? (
-        <main data-theme={themeStore.mode} className=" duration-300">
+        <main
+          data-theme={themeStore.mode}
+          className=" duration-300 py-4 px-4 md:px-16"
+        >
           {children}
         </main>
       ) : (

@@ -16,14 +16,14 @@ export default function () {
   return (
     <div
       onClick={() => cartStore.toggleCart()}
-      className=" fixed w-full h-screen left-0 top-0 backdrop-blur-[2px] backdrop-brightness-50"
+      className=" fixed w-full h-screen left-0 top-0 bg-black/25"
     >
       <motion.div
         initial={{ x: "100%" }}
         animate={{ x: "0%" }}
         exit={{ x: "100%" }}
         onClick={(e) => e.stopPropagation()}
-        className="absolute right-0 w-full sm:w-5/12 h-screen bg-white sm:bg-white text-black p-4 rounded-l-lg flex flex-col gap-4"
+        className="absolute right-0 w-full sm:w-5/12 h-screen bg-base-100  p-4 rounded-l-lg flex flex-col gap-4"
       >
         <div className="flex flex-row gap-4 items-center">
           {cartStore.onCheckout !== "cart" && (
@@ -60,7 +60,7 @@ export default function () {
                     width={300}
                     height={300}
                   ></Image>
-                  <div>
+                  <div className=" text-base-content">
                     <p className="font-black">{item.name}</p>
                     <div className="flex flex-row items-center text-2xl">
                       <p className=" text-base mr-2">Qty: {item.quantity}</p>
