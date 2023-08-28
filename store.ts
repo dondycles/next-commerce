@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { AddCartType } from "./types/AddCartTypes";
+import Dashboard from "./app/dashboard/page";
 
 type CartState = {
   isOpen: boolean;
@@ -91,5 +92,18 @@ export const useThemeStore = create<ThemeState>()(
       toggleMode: (theme) => set((state) => ({ mode: theme })),
     }),
     { name: "theme-store" }
+  )
+);
+type DashboardTypes = {
+  sort: "complete" | "pending" | "all";
+  toggleSort: (sort: "complete" | "pending" | "all") => void;
+};
+export const useDashboardStore = create<DashboardTypes>()(
+  persist(
+    (set) => ({
+      sort: "all",
+      toggleSort: (e) => set((state) => ({ sort: e })),
+    }),
+    { name: "dashboard-store" }
   )
 );
