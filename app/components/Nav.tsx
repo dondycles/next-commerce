@@ -9,7 +9,10 @@ import { signIn, signOut } from "next-auth/react";
 import Cart from "./Cart";
 import DarkLight from "./DarkLight";
 import { useState } from "react";
-import { accentFont } from "../layout";
+import localFont from "next/font/local";
+const accentFont = localFont({
+  src: "../../public/OleoScript-Regular.ttf",
+});
 export default function Nav({ user }: Session) {
   const cartStore = useCartStore();
   const [openDropDrown, setOpenDropDown] = useState<Boolean>(false);
