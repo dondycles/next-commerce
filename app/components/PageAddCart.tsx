@@ -25,7 +25,7 @@ export default function PageAddCart({
     <button
       onClick={handleAddToCard}
       disabled={added}
-      className="btn btn-primary md:max-w-[300px] w-full"
+      className="btn btn-primary md:max-w-[300px] w-full text-base-200"
     >
       {!added ? "Add to card" : "Adding to cart..."}
     </button>

@@ -73,7 +73,7 @@ export default function Nav({ user }: Session) {
                     animate={{ opacity: 100 }}
                     exit={{ opacity: 0 }}
                     tabIndex={0}
-                    className=" p-4 space-y-2 shadow bg-base-100 rounded-box absolute top-12 right-0"
+                    className=" p-4 space-y-2 shadow bg-base-200 rounded-box absolute top-12 right-0"
                   >
                     <Link tabIndex={0} href={"/dashboard"}>
                       <li
