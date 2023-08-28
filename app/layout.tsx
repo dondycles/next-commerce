@@ -7,7 +7,7 @@ import Hydrate from "./components/Hydrate";
 const myFont = localFont({ src: "../public/Poppins-Regular.ttf" });
 
 export const metadata = {
-  title: "Next-Commerce",
+  title: "Sveltered",
   description: "My very first E-Commerce Web App!",
 };
 
@@ -18,7 +18,7 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession(options);
   return (
-    <html lang="en" className={myFont.className}>
+    <html lang="en" className={`${myFont.className}`}>
       <>
         <Hydrate>
           <Nav user={session?.user} expires={session?.expires as string} />

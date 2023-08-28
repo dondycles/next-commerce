@@ -40,7 +40,7 @@ export default async function Dashboard() {
     );
   }
   return (
-    <main className=" flex flex-col gap-4 pt-[96px] text-base-content min-h-[100dvh]">
+    <main className=" flex flex-col gap-4 pt-[96px] text-base-content">
       {orders?.map((order) => {
         return (
           <div
